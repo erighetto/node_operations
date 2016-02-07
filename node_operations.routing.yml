@@ -1,0 +1,31 @@
+node_operations.operation_controller_type:
+  path: '/node_operations/type/change/{nid}/{node_type}'
+  defaults:
+    _controller: '\Drupal\node_operations\Controller\ConvertController::type'
+    _title: 'Convert Content Type'
+  requirements:
+    _permission: 'administer nodes'
+
+node_operations.operation_controller_promoted:
+  path: '/node_operations/promoted/reset/{node_type}'
+  defaults:
+    _controller: '\Drupal\node_operations\Controller\ConvertController::promoted'
+    _title: 'Promoted To Frontpage Reset'
+  requirements:
+    _permission: 'administer nodes'
+
+node_operations.operation_controller_slug:
+  path: '/node_operations/slug/rebuild/{lang}'
+  defaults:
+    _controller: '\Drupal\node_operations\Controller\ConvertController::slug'
+    _title: 'Rebuild Slug'
+  requirements:
+    _permission: 'administer nodes'
+
+node_operations.operation_controller_lang:
+  path: '/node_operations/lang/assign/{lang}'
+  defaults:
+    _controller: '\Drupal\node_operations\Controller\ConvertController::lang'
+    _title: 'Reset content language'
+  requirements:
+    _permission: 'administer nodes'

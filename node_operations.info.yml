@@ -1,0 +1,6 @@
+name: Node Operations
+description:  Collection of utilities for Drupal 8 that allows you to perform useful operations like reset language, url or content type
+package: Custom
+type: module
+version: 1.0
+core: 8.x
