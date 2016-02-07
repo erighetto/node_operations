@@ -15,11 +15,15 @@ CONTENTS OF THIS FILE
  Collection of utilities for Drupal 8 that allows you to perform useful operations like reset language, url or content type.
 
  * Unset the node promoted value. So you can bulk remove the "promoted" flag to all node of some content type
+
  * Slug.
-   After installing https://www.drupal.org/project/pathauto only the entitis with flag "Generate automatic URL alias" set to true
+   After installing https://www.drupal.org/project/pathauto
+   only the entities with flag "Generate automatic URL alias" set to true
    This operation change those flag and rebuild the path
+
  * Change the type of a node.
    Pay attention: this can produce garbage in your db if content type do not support additional field related to the changing node
+
  * Set a consistent language of those node where language is set to UND
 
  REQUIREMENTS

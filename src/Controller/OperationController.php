@@ -43,7 +43,7 @@ class OperationController extends ControllerBase {
   /**
    * Slug.
    * After installing https://www.drupal.org/project/pathauto
-   * only the entitis with flag "Generate automatic URL alias" set to true
+   * only the entities with flag "Generate automatic URL alias" set to true
    * This operation change those flag and rebuild the path
    *
    * @return string
