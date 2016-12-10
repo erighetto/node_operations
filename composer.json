@@ -1,0 +1,6 @@
+{
+    "name": "erighetto/node_operations",
+    "description": "Collection of utilities for Drupal 8 that allows you to perform useful operations like reset language, url or content type",
+    "type": "drupal-module",
+    "license": "GPL-2.0+"
+}
