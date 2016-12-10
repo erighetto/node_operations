@@ -58,7 +58,7 @@ class OperationController extends ControllerBase {
     foreach ($nids as $nid) {
       $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
       $entity->path->pathauto = TRUE;
-      \Drupal::service('pathauto.manager')->updateAlias($entity, 'update', ['language' => $lang]);
+      \Drupal::service('pathauto.generator')->updateEntityAlias($entity, 'update', ['language' => $lang]);
       $entity->save();
     }
 
