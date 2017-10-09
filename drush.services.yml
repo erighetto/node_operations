@@ -1,0 +1,5 @@
+services:
+  node_operations.command:
+    class: Drupal\node_operations\Commands\NodeOperations
+    tags:
+      -  { name: drush.command }
