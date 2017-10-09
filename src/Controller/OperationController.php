@@ -19,8 +19,8 @@ class OperationController extends ControllerBase {
    * Unset the node promoted value.
    * So you can bulk remove the "promoted" flag to all node of some content type
    *
-   * @return string
-   *   Return a silly string.
+   * @return array
+   *   Return a markup array.
    */
   public function promoted($node_type) {
 
@@ -46,8 +46,8 @@ class OperationController extends ControllerBase {
    * only the entities with flag "Generate automatic URL alias" set to true
    * This operation change those flag and rebuild the path
    *
-   * @return string
-   *   Return a silly string.
+   * @return array
+   *   Return a markup array.
    */
   public function slug($lang) {
 
@@ -56,8 +56,10 @@ class OperationController extends ControllerBase {
     $nids = $query->execute();
 
     foreach ($nids as $nid) {
+      /** @var \Drupal\node\Entity\Node $entity */
       $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
       $entity->path->pathauto = TRUE;
+      
       \Drupal::service('pathauto.generator')->updateEntityAlias($entity, 'update', ['language' => $lang]);
       $entity->save();
     }
@@ -73,10 +75,11 @@ class OperationController extends ControllerBase {
    * Change the type of a node.
    * Pay attention: this can produce garbage in your db if content type do not support additional field related to the changing node
    *
-   * @return string
-   *   Return a silly string.
+   * @return array
+   *   Return a markup array.
    */
   public function type($nid,$node_type) {
+    /** @var \Drupal\node\Entity\Node $node */
     $node = Node::load($nid);
     $node->type->setValue($node_type);
     $node->save();
@@ -91,8 +94,8 @@ class OperationController extends ControllerBase {
    * Lang.
    * Set a consistent language of those node where language is set to UND
    *
-   * @return string
-   *   Return a silly string.
+   * @return array
+   *   Return a markup array.
    */
   public function lang($lang) {
 
@@ -101,6 +104,7 @@ class OperationController extends ControllerBase {
     $nids = $query->execute();
 
     foreach ($nids as $nid) {
+      /** @var \Drupal\node\Entity\Node $node */
       $node = Node::load($nid);
       $node->langcode->setValue($lang);
       $node->save();
