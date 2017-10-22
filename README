@@ -12,9 +12,7 @@ CONTENTS OF THIS FILE
 
  INTRODUCTION
  ------------
- Collection of utilities for Drupal 8 that allows you to perform useful operations like reset language, url or content type.
-
- See node_operations.routing.yml for see which url you can reach to run the following operations:
+ Collection of Drush Commands for Drupal 8 that allows you to perform useful operations like reset language, url or content type.
 
  * Unset the node promoted value. So you can bulk remove the "promoted" flag to all node of some content type
 
@@ -30,9 +28,8 @@ CONTENTS OF THIS FILE
 
  REQUIREMENTS
  ------------
-
- * https://www.drupal.org/project/pathauto
- (Only if want to use it)
+ * https://www.drush.org (Version 9)
+ * https://www.drupal.org/project/pathauto (Only if want to use it)
 
  RECOMMENDED MODULES
  -------------------
