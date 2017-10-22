@@ -3,6 +3,7 @@
 namespace Drupal\node_operations\Commands;
 
 use Drush\Commands\DrushCommands;
+use Drupal\node\Entity\Node;
 
 /**
  * Class OperationCommands
@@ -31,10 +32,10 @@ class OperationCommands extends DrushCommands {
    * So you can bulk remove the "promoted" flag to all node of some content type
    *
    * @command nodeops:promoted
-   * @param $node_type content type to look for.
-   * @usage drush nos-prom article
+   * @param $node_type Content type to look for.
+   * @usage drush nos-pro article
    *  Unset the node promoted value.
-   * @aliases nos-prom
+   * @aliases nos-pro
    */
   public function promoted($node_type) {
 
@@ -56,7 +57,7 @@ class OperationCommands extends DrushCommands {
    * This operation change those flag and rebuild the path
    *
    * @command nodeops:path
-   * @param $lang language code to set.
+   * @param $lang Language code to set.
    * @usage drush nos-pat it
    *  change pathauto flag and rebuild the path.
    * @aliases nos-pat
@@ -83,8 +84,8 @@ class OperationCommands extends DrushCommands {
    * Pay attention: this can produce garbage in your db if content type do not support additional field related to the changing node
    *
    * @command nodeops:type
-   * @param $nid node id.
-   * @param $node_type to set.
+   * @param $nid Node id.
+   * @param $node_type Node type to set.
    * @usage drush nos-typ 9 article
    *  Change the type of a node.
    * @aliases nos-typ
@@ -102,7 +103,7 @@ class OperationCommands extends DrushCommands {
    * Set a consistent language of those node where language is set to UND
    *
    * @command nodeops:lang
-   * @param $lang language code to set.
+   * @param $lang Language code to set.
    * @usage drush nos-lan it
    *  Unset the node promoted value.
    * @aliases nos-lan
