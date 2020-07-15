@@ -3,7 +3,6 @@
 namespace Drupal\node_operations\Commands;
 
 use Drush\Commands\DrushCommands;
-use Drupal\node\Entity\Node;
 
 /**
  * Class OperationCommands
@@ -41,11 +40,13 @@ class OperationCommands extends DrushCommands {
 
     $query = \Drupal::entityQuery('node')->condition('type', $node_type);
     $nids = $query->execute();
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
     foreach ($nids as $nid) {
-      $node = Node::load($nid);
-      $node->promote->setValue(0);
-      $node->save();
+      /** @var \Drupal\node\Entity\Node $entity */
+      $entity = $node_storage->load($nid);
+      $entity->promote->setValue(0);
+      $entity->save();
     }
 
   }
@@ -66,10 +67,11 @@ class OperationCommands extends DrushCommands {
 
     $query = \Drupal::entityQuery('node')->condition('nid', 0,'>');
     $nids = $query->execute();
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
     foreach ($nids as $nid) {
       /** @var \Drupal\node\Entity\Node $entity */
-      $entity = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+      $entity = $node_storage->load($nid);
       $entity->path->pathauto = TRUE;
 
       \Drupal::service('pathauto.generator')->updateEntityAlias($entity, 'update', ['language' => $lang]);
@@ -91,10 +93,11 @@ class OperationCommands extends DrushCommands {
    * @aliases nos-typ
    */
   public function type($nid,$node_type) {
-    /** @var \Drupal\node\Entity\Node $node */
-    $node = Node::load($nid);
-    $node->type->setValue($node_type);
-    $node->save();
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+    /** @var \Drupal\node\Entity\Node $entity */
+    $entity = $node_storage->load($nid);
+    $entity->type->setValue($node_type);
+    $entity->save();
 
   }
 
@@ -112,12 +115,13 @@ class OperationCommands extends DrushCommands {
 
     $query = \Drupal::entityQuery('node')->condition('langcode','und');
     $nids = $query->execute();
+    $node_storage = \Drupal::entityTypeManager()->getStorage('node');
 
     foreach ($nids as $nid) {
-      /** @var \Drupal\node\Entity\Node $node */
-      $node = Node::load($nid);
-      $node->langcode->setValue($lang);
-      $node->save();
+      /** @var \Drupal\node\Entity\Node $entity */
+      $entity = $node_storage->load($nid);
+      $entity->langcode->setValue($lang);
+      $entity->save();
     }
 
   }
