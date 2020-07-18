@@ -20,10 +20,12 @@ class OperationCommands extends DrushCommands {
    * @aliases nos-fnr nodeops:fnr
    */
   public function fix_node_repository() {
-    $current_field_storage_definitions = \Drupal::entityManager()
-      ->getFieldStorageDefinitions('node');
+
+    $entity_field_manager = \Drupal::service('entity_field.manager');
+    $current_field_storage_definitions = $entity_field_manager->getFieldStorageDefinitions('node');
     \Drupal::service('entity.last_installed_schema.repository')
       ->setLastInstalledFieldStorageDefinitions('node', $current_field_storage_definitions);
+      
   }
 
   /**
